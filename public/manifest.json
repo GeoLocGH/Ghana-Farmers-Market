@@ -1,0 +1,26 @@
+{
+  "id": "/",
+  "name": "Ghana Farmers Market℠",
+  "short_name": "Ghana Farmers Market",
+  "description": "Smart agricultural sourcing, weather forecasts, market prices, and offline farming tips for Ghanaian farmers.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#15803d",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/src/assets/images/ghana_farmers_market_logo_1791426087479.jpg",
+      "sizes": "192x192 512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "/src/assets/images/ghana_farmers_market_logo_1791426087479.jpg",
+      "sizes": "192x192 512x512",
+      "type": "image/jpeg",
+      "purpose": "maskable"
+    }
+  ]
+}

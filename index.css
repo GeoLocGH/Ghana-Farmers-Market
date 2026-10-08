@@ -1,0 +1,33 @@
+/* Global styles for Ghana Farmers Market℠ */
+
+/* Ensure all form inputs, textareas, and selects always have crisp, dark, visible text */
+input, textarea, select {
+  color: #111827 !important;
+  background-color: #ffffff;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #6b7280 !important;
+}
+
+/* Ensure all post, forum, and card contents have high contrast and clear visibility */
+.card-content, 
+.forum-content,
+.post-content {
+  color: #111827 !important;
+}
+
+/* Ensure headings inside white containers are dark */
+.bg-white h1, 
+.bg-white h2, 
+.bg-white h3, 
+.bg-white h4, 
+.bg-white p, 
+.bg-white span:not([class*="text-"]):not([class*="bg-"]),
+.bg-gray-50 h1,
+.bg-gray-50 h2,
+.bg-gray-50 h3,
+.bg-gray-50 h4,
+.bg-gray-50 p {
+  color: inherit;
+}

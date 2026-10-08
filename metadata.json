@@ -1,0 +1,8 @@
+{
+  "name": "Ghana Farmers Market℠",
+  "description": "Une application d\u0027approvisionnement agricole pour les agriculteurs africains, fournissant des prévisions météorologiques hyperlocales, les prix du marché, un diagnostic des ravageurs basé sur l\u0027IA, la location et le partage d\u0027outils et d\u0027équipements agricoles, ainsi qu\u0027une place de marché pour les produits agricoles afin d\u0027améliorer la rentabilité et la sécurité alimentaire.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": []
+}
