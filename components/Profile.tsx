@@ -147,8 +147,16 @@ const Profile: React.FC<ProfileProps> = ({ user, setUser, onLogout, setActiveVie
 
   const handleFileDownload = async (file: UserFile) => {
       try {
-          const url = await getFreshDownloadUrl(file.storage_path);
-          window.open(url, '_blank');
+          const url = (await getFreshDownloadUrl(file.storage_path)) || file.download_url;
+          if (!url) return;
+          const link = document.createElement('a');
+          link.href = url;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.download = file.file_name || 'document';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
       } catch (error) {
           console.error("Download failed:", error);
       }

@@ -42,6 +42,35 @@ const extractSources = (response: any): GroundingSource[] => {
     .filter((s: any) => s !== null) as GroundingSource[];
 };
 
+// Helper to detect current active language for localized AI responses
+const getCurrentLanguageCode = (): string => {
+  try {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('agro_user_preferred_language') || 'en';
+    }
+  } catch {
+    // Ignore storage access errors
+  }
+  return 'en';
+};
+
+const getLanguagePromptInstruction = (): string => {
+  const code = getCurrentLanguageCode();
+  const languageNames: Record<string, string> = {
+    en: 'English',
+    tw: 'Asante Twi (Ghanaian Akan)',
+    ee: 'Ewe (Eʋegbe)',
+    ga: 'Ga (Ghanaian Ga language)',
+    dag: 'Dagbani (Northern Ghana language)',
+    fr: 'French (Français)',
+  };
+  const langName = languageNames[code] || 'English';
+  if (code === 'en') {
+    return 'Respond clearly in English.';
+  }
+  return `IMPORTANT: Write all user-facing text, explanations, stage names, instructions, and advisory notes in ${langName} (while keeping JSON property keys and strict enum values like 'Sunny', 'Cloudy', 'Rainy', 'Stormy', 'Optimal', 'Good for Sowing', 'Good for Spraying', 'Caution', 'Unfavorable', 'up', 'down', 'stable' in English).`;
+};
+
 const DIAGNOSIS_PROMPT = `You are an expert agronomist specializing in common crops and pests in Ghana. Analyze the provided image of a plant leaf. Identify the likely disease or pest infestation. Provide a concise report with the following sections in Markdown format: 
 ### Diagnosis
 **[Name of disease/pest]**
@@ -363,7 +392,7 @@ export const diagnosePlant = async (imageBase64: string, mimeType: string): Prom
     };
 
     const textPart = {
-      text: DIAGNOSIS_PROMPT,
+      text: `${DIAGNOSIS_PROMPT}\n\n${getLanguagePromptInstruction()}`,
     };
 
     const response = await ai.models.generateContent({
@@ -437,6 +466,7 @@ export const getAdvisory = async (
       "instructions": ["string", "string"] (List of specific actions)
     }
   ]
+  ${getLanguagePromptInstruction()}
   `;
 
   const callApi = async () => {
@@ -483,7 +513,8 @@ export const checkWeatherAlerts = async (location: GeoLocation): Promise<string>
   }
 
   // 2. Check in-memory cache
-  const cacheKey = `alerts-${location.latitude.toFixed(2)}-${location.longitude.toFixed(2)}`;
+  const langCode = getCurrentLanguageCode();
+  const cacheKey = `alerts-${langCode}-${location.latitude.toFixed(2)}-${location.longitude.toFixed(2)}`;
   const cached = cache[cacheKey];
   if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
     return cached.data;
@@ -494,7 +525,7 @@ export const checkWeatherAlerts = async (location: GeoLocation): Promise<string>
     return offlineAlert?.alert || "No active severe weather alerts at this time.";
   }
 
-  const prompt = `Search for current severe weather warnings, floods, drought alerts, or extreme heat advisories specifically for agricultural areas in Ghana near latitude ${location.latitude}, longitude ${location.longitude}. Summarize any active alerts in one short sentence. If there are no active severe alerts, simply say "No active severe weather alerts at this time."`;
+  const prompt = `Search for current severe weather warnings, floods, drought alerts, or extreme heat advisories specifically for agricultural areas in Ghana near latitude ${location.latitude}, longitude ${location.longitude}. Summarize any active alerts in one short sentence. If there are no active severe alerts, simply say "No active severe weather alerts at this time." ${getLanguagePromptInstruction()}`;
 
   const callApi = async () => {
     const response = await ai.models.generateContent({
@@ -578,6 +609,7 @@ export const getLocalWeather = async (
       "agromet_note": "string (Actionable advisory for planting, spraying, weeding, or harvesting)",
       "planting_suitability": "string (One of: 'Optimal', 'Good for Sowing', 'Good for Spraying', 'Caution', 'Unfavorable')"
     }
+    ${getLanguagePromptInstruction()}
   `;
 
   const callApi = async () => {
