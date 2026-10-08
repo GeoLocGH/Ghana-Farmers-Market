@@ -445,7 +445,7 @@ const CommunityForum: React.FC<CommunityForumProps> = ({ user }) => {
               <h3 className="text-base font-bold text-gray-900 mb-2">Leave a Reply</h3>
               
               {error && (
-                <div className="p-3 bg-red-100 text-red-800 text-xs rounded-lg mb-3">
+                <div role="alert" className="error-notification p-3 bg-red-100 border border-red-400 text-black font-semibold text-xs rounded-lg mb-3">
                   {error}
                 </div>
               )}
@@ -455,7 +455,7 @@ const CommunityForum: React.FC<CommunityForumProps> = ({ user }) => {
                   <textarea 
                     value={newReplyContent} 
                     onChange={e => setNewReplyContent(e.target.value)} 
-                    className="w-full border border-gray-300 rounded-xl p-3 text-sm text-gray-900 placeholder-gray-500 bg-white focus:ring-2 focus:ring-green-500 focus:outline-none" 
+                    className="w-full border border-gray-300 rounded-xl p-3 text-sm text-black placeholder-gray-600 bg-white focus:ring-2 focus:ring-green-500 focus:outline-none" 
                     placeholder="Write your advice, organic treatment recommendation, or follow-up question..." 
                     rows={3}
                     required
@@ -535,35 +535,35 @@ const CommunityForum: React.FC<CommunityForumProps> = ({ user }) => {
           </div>
 
           {error && (
-            <div className="p-3 bg-red-100 text-red-800 text-xs rounded-lg">
+            <div role="alert" className="error-notification p-3 bg-red-100 border border-red-400 text-black font-semibold text-xs rounded-lg">
               {error}
             </div>
           )}
 
           <form onSubmit={handleCreatePost} className="space-y-4">
             <div>
-              <label className="block text-sm font-bold text-gray-900 mb-1">
+              <label className="block text-sm font-bold text-black mb-1">
                 Post Title *
               </label>
               <input 
                 type="text"
                 value={newPostTitle} 
                 onChange={e => setNewPostTitle(e.target.value)} 
-                className="w-full border border-gray-300 rounded-xl p-3 text-sm text-gray-900 placeholder-gray-500 bg-white focus:ring-2 focus:ring-green-500 focus:outline-none" 
+                className="w-full border border-gray-300 rounded-xl p-3 text-sm text-black placeholder-gray-600 bg-white focus:ring-2 focus:ring-green-500 focus:outline-none" 
                 placeholder="e.g. Yellowing leaves and black spots on my plantain farm in Koforidua" 
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-bold text-gray-900 mb-1">
+              <label className="block text-sm font-bold text-black mb-1">
                 Detailed Description & Symptoms *
               </label>
               <textarea 
                 value={newPostContent} 
                 onChange={e => setNewPostContent(e.target.value)} 
                 rows={6} 
-                className="w-full border border-gray-300 rounded-xl p-3 text-sm text-gray-900 placeholder-gray-500 bg-white focus:ring-2 focus:ring-green-500 focus:outline-none leading-relaxed" 
+                className="w-full border border-gray-300 rounded-xl p-3 text-sm text-black placeholder-gray-600 bg-white focus:ring-2 focus:ring-green-500 focus:outline-none leading-relaxed" 
                 placeholder="Describe what you observed, crop variety, watering schedule, symptoms, recent rains, fertilizers used, or any diagnosis reports you'd like to share..." 
                 required
               />
@@ -571,7 +571,7 @@ const CommunityForum: React.FC<CommunityForumProps> = ({ user }) => {
 
             {/* Photo Attachments */}
             <div>
-              <label className="block text-sm font-bold text-gray-900 mb-1">
+              <label className="block text-sm font-bold text-black mb-1">
                 Attach Photos (Optional)
               </label>
               <input 

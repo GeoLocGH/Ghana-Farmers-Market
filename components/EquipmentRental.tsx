@@ -286,14 +286,14 @@ const EquipmentRental: React.FC<EquipmentRentalProps> = ({ user }) => {
                 placeholder="Search tractors, plows, etc..." 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full pl-10 pr-4 py-3 text-black bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 font-medium"
               />
-              <SearchIcon className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
+              <SearchIcon className="absolute left-3 top-3.5 w-5 h-5 text-gray-500" />
           </div>
           <select 
             value={selectedType} 
             onChange={(e) => setSelectedType(e.target.value as EquipmentType | 'All')}
-            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
+            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white text-black font-medium"
           >
               <option value="All">All Types</option>
               {Object.values(EquipmentType).map(t => <option key={t} value={t}>{t}</option>)}
@@ -352,22 +352,22 @@ const EquipmentRental: React.FC<EquipmentRentalProps> = ({ user }) => {
 
                   <form onSubmit={submitInquiry} className="space-y-4">
                       <div>
-                          <label className="block text-sm font-bold text-gray-800 mb-1">Your Name</label>
-                          <input required type="text" value={inquiryForm.name} onChange={e => setInquiryForm({...inquiryForm, name: e.target.value})} className="w-full border border-gray-300 p-2.5 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-green-500 focus:outline-none" />
+                          <label className="block text-sm font-bold text-black mb-1">Your Name</label>
+                          <input required type="text" value={inquiryForm.name} onChange={e => setInquiryForm({...inquiryForm, name: e.target.value})} className="w-full border border-gray-300 p-2.5 rounded-lg text-black bg-white focus:ring-2 focus:ring-green-500 focus:outline-none" />
                       </div>
                       <div className="grid grid-cols-2 gap-4">
                           <div>
-                              <label className="block text-sm font-bold text-gray-800 mb-1">Email</label>
-                              <input required type="email" value={inquiryForm.email} onChange={e => setInquiryForm({...inquiryForm, email: e.target.value})} className="w-full border border-gray-300 p-2.5 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-green-500 focus:outline-none" />
+                              <label className="block text-sm font-bold text-black mb-1">Email</label>
+                              <input required type="email" value={inquiryForm.email} onChange={e => setInquiryForm({...inquiryForm, email: e.target.value})} className="w-full border border-gray-300 p-2.5 rounded-lg text-black bg-white focus:ring-2 focus:ring-green-500 focus:outline-none" />
                           </div>
                           <div>
-                              <label className="block text-sm font-bold text-gray-800 mb-1">Phone</label>
-                              <input required type="tel" value={inquiryForm.phone} onChange={e => setInquiryForm({...inquiryForm, phone: e.target.value})} className="w-full border border-gray-300 p-2.5 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-green-500 focus:outline-none" />
+                              <label className="block text-sm font-bold text-black mb-1">Phone</label>
+                              <input required type="tel" value={inquiryForm.phone} onChange={e => setInquiryForm({...inquiryForm, phone: e.target.value})} className="w-full border border-gray-300 p-2.5 rounded-lg text-black bg-white focus:ring-2 focus:ring-green-500 focus:outline-none" />
                           </div>
                       </div>
                       <div>
-                          <label className="block text-sm font-bold text-gray-800 mb-1">Message</label>
-                          <textarea required rows={3} value={inquiryForm.message} onChange={e => setInquiryForm({...inquiryForm, message: e.target.value})} className="w-full border border-gray-300 p-2.5 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-green-500 focus:outline-none"></textarea>
+                          <label className="block text-sm font-bold text-black mb-1">Message</label>
+                          <textarea required rows={3} value={inquiryForm.message} onChange={e => setInquiryForm({...inquiryForm, message: e.target.value})} className="w-full border border-gray-300 p-2.5 rounded-lg text-black bg-white focus:ring-2 focus:ring-green-500 focus:outline-none"></textarea>
                       </div>
                       <Button type="submit" isLoading={isSubmitting} className="w-full">Send Request</Button>
                   </form>
@@ -378,24 +378,24 @@ const EquipmentRental: React.FC<EquipmentRentalProps> = ({ user }) => {
       {/* Forms and Modals */}
       {isFormVisible && (
           <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
-              <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto text-gray-900">
-                   <h3 className="text-xl font-bold text-gray-900 mb-4">{isEditMode ? 'Edit' : 'Add'} Equipment</h3>
+              <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto text-black">
+                   <h3 className="text-xl font-bold text-black mb-4">{isEditMode ? 'Edit' : 'Add'} Equipment</h3>
                    <form onSubmit={handleSubmitItem} className="space-y-3">
                        <div>
-                           <label className="block text-xs font-bold text-gray-700 mb-1">Equipment Name *</label>
-                           <input type="text" value={currentItem.name} onChange={e => setCurrentItem({...currentItem, name: e.target.value})} className="w-full p-2.5 border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-green-500 focus:outline-none" placeholder="e.g. John Deere 5075E Tractor" required />
+                           <label className="block text-xs font-bold text-black mb-1">Equipment Name *</label>
+                           <input type="text" value={currentItem.name} onChange={e => setCurrentItem({...currentItem, name: e.target.value})} className="w-full p-2.5 border border-gray-300 rounded-lg text-black bg-white focus:ring-2 focus:ring-green-500 focus:outline-none" placeholder="e.g. John Deere 5075E Tractor" required />
                        </div>
                        <div>
-                           <label className="block text-xs font-bold text-gray-700 mb-1">Price per day (GHS) *</label>
-                           <input type="number" value={currentItem.price_per_day} onChange={e => setCurrentItem({...currentItem, price_per_day: Number(e.target.value)})} className="w-full p-2.5 border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-green-500 focus:outline-none" placeholder="Daily rental rate in GHS" required />
+                           <label className="block text-xs font-bold text-black mb-1">Price per day (GHS) *</label>
+                           <input type="number" value={currentItem.price_per_day} onChange={e => setCurrentItem({...currentItem, price_per_day: Number(e.target.value)})} className="w-full p-2.5 border border-gray-300 rounded-lg text-black bg-white focus:ring-2 focus:ring-green-500 focus:outline-none" placeholder="Daily rental rate in GHS" required />
                        </div>
                        <div>
-                           <label className="block text-xs font-bold text-gray-700 mb-1">Equipment Photo</label>
-                           <input type="file" ref={fileInputRef} onChange={handleImageChange} className="w-full text-sm text-gray-700" />
+                           <label className="block text-xs font-bold text-black mb-1">Equipment Photo</label>
+                           <input type="file" ref={fileInputRef} onChange={handleImageChange} className="w-full text-sm text-black" />
                        </div>
                        <div className="flex gap-2 pt-2">
                            <Button type="submit" isLoading={isSubmitting}>Save</Button>
-                           <Button onClick={() => setIsFormVisible(false)} className="bg-gray-200 hover:bg-gray-300 text-gray-800">Cancel</Button>
+                           <Button onClick={() => setIsFormVisible(false)} className="bg-gray-200 hover:bg-gray-300 text-black">Cancel</Button>
                        </div>
                    </form>
               </Card>

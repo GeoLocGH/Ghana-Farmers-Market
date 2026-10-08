@@ -250,11 +250,11 @@ const Dashboard: React.FC<DashboardProps> = ({ setActiveView, user }) => {
                           <span>Push Alerts ({userRegion})</span>
                         </button>
                       </div>
-                      <p className="text-sm text-red-600 font-medium mb-1">
+                      <p className="text-sm text-black font-semibold mb-1">
                         {isAlertCached ? t.cachedOffline : t.metWatchSub}
                       </p>
-                      <div className="bg-white/80 p-3 rounded-md border border-red-100">
-                          <p className="text-gray-800 font-semibold">{liveAlert}</p>
+                      <div className="bg-white/95 p-3 rounded-md border border-red-200">
+                          <p className="text-black font-semibold">{liveAlert}</p>
                       </div>
                   </div>
               </div>

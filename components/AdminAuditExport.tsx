@@ -435,23 +435,23 @@ const AdminAuditExport: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 my-4">
           {/* Search Box */}
           <div className="relative">
-            <SearchIcon className="w-4 h-4 text-gray-400 absolute left-3 top-2.5" />
+            <SearchIcon className="w-4 h-4 text-gray-500 absolute left-3 top-2.5" />
             <input
               type="text"
               placeholder={activeTab === 'alerts' ? "Search alerts by title or region..." : "Search user, action, email, region..."}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-1.5 text-xs bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg outline-none focus:ring-1 focus:ring-green-500"
+              className="w-full pl-9 pr-3 py-1.5 text-xs text-black bg-white border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-green-500 font-medium"
             />
           </div>
 
           {/* Region Filter */}
           <div className="flex items-center gap-1.5">
-            <FilterIcon className="w-3.5 h-3.5 text-gray-400" />
+            <FilterIcon className="w-3.5 h-3.5 text-gray-500" />
             <select
               value={selectedRegion}
               onChange={(e) => setSelectedRegion(e.target.value)}
-              className="w-full py-1.5 px-2 text-xs bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg outline-none focus:ring-1 focus:ring-green-500"
+              className="w-full py-1.5 px-2 text-xs text-black bg-white border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-green-500 font-medium"
             >
               {GHANA_REGIONS.map(reg => (
                 <option key={reg} value={reg}>{reg}</option>
@@ -464,7 +464,7 @@ const AdminAuditExport: React.FC = () => {
             <select
               value={selectedSeverity}
               onChange={(e) => setSelectedSeverity(e.target.value)}
-              className="py-1.5 px-2 text-xs bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg outline-none focus:ring-1 focus:ring-green-500"
+              className="py-1.5 px-2 text-xs text-black bg-white border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-green-500 font-medium"
             >
               <option value="all">All Severities (Critical, Warning, Info)</option>
               <option value="critical">Critical Only</option>
@@ -472,7 +472,7 @@ const AdminAuditExport: React.FC = () => {
               <option value="info">Info Only</option>
             </select>
           ) : (
-            <div className="text-xs text-gray-500 flex items-center justify-end px-2">
+            <div className="text-xs text-gray-700 font-medium flex items-center justify-end px-2">
               Showing {filteredLogs.length} of {activityLogs.length} logged events
             </div>
           )}

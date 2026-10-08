@@ -257,7 +257,7 @@ const Weather: React.FC = () => {
 
       {/* Geolocation Warning (if any, but don't block if we have cached data) */}
       {geoError && forecasts.length === 0 && (
-        <div className="text-amber-800 bg-amber-50 border border-amber-200 p-3 rounded-md text-sm mb-4">
+        <div role="alert" className="error-notification text-black font-semibold bg-amber-50 border border-amber-300 p-3 rounded-md text-sm mb-4">
           Location detection note: {geoError}. Showing regional default forecast.
         </div>
       )}

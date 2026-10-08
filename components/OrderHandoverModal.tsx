@@ -539,7 +539,7 @@ export const OrderHandoverModal: React.FC<OrderHandoverModalProps> = ({
                     subtitle="Point your camera at the buyer's QR screen or printed consignment note"
                   />
                   {verificationFeedback && !verificationFeedback.success && (
-                    <div className="mt-4 max-w-md mx-auto p-3.5 bg-red-50 border border-red-200 text-red-700 rounded-xl text-xs font-medium text-center">
+                    <div role="alert" className="error-notification mt-4 max-w-md mx-auto p-3.5 bg-red-100 border border-red-400 text-black font-semibold rounded-xl text-xs text-center">
                       {verificationFeedback.message}
                     </div>
                   )}
@@ -613,18 +613,18 @@ export const OrderHandoverModal: React.FC<OrderHandoverModalProps> = ({
                       </h4>
 
                       <div>
-                        <label className="block text-xs font-medium text-gray-700 mb-1">
+                        <label className="block text-xs font-semibold text-black mb-1">
                           Produce Quality Grade
                         </label>
                         <select
                           value={inspectionCondition}
                           onChange={(e) => setInspectionCondition(e.target.value as any)}
-                          className="w-full text-xs p-2 border border-gray-300 rounded-lg bg-white text-gray-900 font-medium"
+                          className="w-full text-xs p-2 border border-gray-300 rounded-lg bg-white text-black font-medium"
                         >
-                          <option value="Fresh / Grade A">Fresh / Grade A (Premium Produce)</option>
-                          <option value="Good / Grade B">Good / Grade B (Standard Commercial)</option>
-                          <option value="Fair / Acceptable">Fair / Acceptable (Minor Blemishes)</option>
-                          <option value="Damaged / Rejected">Damaged / Rejected (Do not accept)</option>
+                          <option value="Fresh / Grade A" className="text-black bg-white">Fresh / Grade A (Premium Produce)</option>
+                          <option value="Good / Grade B" className="text-black bg-white">Good / Grade B (Standard Commercial)</option>
+                          <option value="Fair / Acceptable" className="text-black bg-white">Fair / Acceptable (Minor Blemishes)</option>
+                          <option value="Damaged / Rejected" className="text-black bg-white">Damaged / Rejected (Do not accept)</option>
                         </select>
                       </div>
 
@@ -636,7 +636,7 @@ export const OrderHandoverModal: React.FC<OrderHandoverModalProps> = ({
                             onChange={(e) => setQuantityVerified(e.target.checked)}
                             className="w-4 h-4 text-green-600 rounded focus:ring-green-500"
                           />
-                          <span className="font-semibold text-gray-800">
+                          <span className="font-semibold text-black">
                             Quantity and weight match consignment ({scannedHandoverToVerify.quantity})
                           </span>
                         </label>
@@ -648,14 +648,14 @@ export const OrderHandoverModal: React.FC<OrderHandoverModalProps> = ({
                             onChange={(e) => setPackagingIntact(e.target.checked)}
                             className="w-4 h-4 text-green-600 rounded focus:ring-green-500"
                           />
-                          <span className="font-semibold text-gray-800">
+                          <span className="font-semibold text-black">
                             Crates, sacks, or packaging seals are secure and undamaged
                           </span>
                         </label>
                       </div>
 
                       <div>
-                        <label className="block text-xs font-medium text-gray-700 mb-1">
+                        <label className="block text-xs font-semibold text-black mb-1">
                           Inspection Remarks / Dispatch Notes (Optional)
                         </label>
                         <input
@@ -663,7 +663,7 @@ export const OrderHandoverModal: React.FC<OrderHandoverModalProps> = ({
                           value={inspectionNotes}
                           onChange={(e) => setInspectionNotes(e.target.value)}
                           placeholder="e.g. Inspected at Techiman depot, 5 bags weighed at 50kg each, moisture optimal."
-                          className="w-full text-xs p-2 border border-gray-300 rounded-lg bg-white text-gray-900"
+                          className="w-full text-xs p-2 border border-gray-300 rounded-lg bg-white text-black"
                         />
                       </div>
                     </div>
@@ -671,10 +671,10 @@ export const OrderHandoverModal: React.FC<OrderHandoverModalProps> = ({
 
                   {/* Feedback Message */}
                   {verificationFeedback && (
-                    <div className={`p-3 rounded-xl text-xs font-semibold ${
+                    <div role="alert" className={`p-3 rounded-xl text-xs font-semibold text-black ${
                       verificationFeedback.success 
-                        ? 'bg-green-100 text-green-900 border border-green-300' 
-                        : 'bg-red-100 text-red-900 border border-red-300'
+                        ? 'bg-green-100 border border-green-400' 
+                        : 'error-notification bg-red-100 border border-red-400'
                     }`}>
                       {verificationFeedback.message}
                     </div>

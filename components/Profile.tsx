@@ -267,26 +267,26 @@ const Profile: React.FC<ProfileProps> = ({ user, setUser, onLogout, setActiveVie
                            <input 
                                 value={formData.name} 
                                 onChange={e => setFormData({...formData, name: e.target.value})} 
-                                className="w-full border p-2 rounded text-sm" 
+                                className="w-full border border-gray-300 p-2 rounded text-sm text-black bg-white font-medium" 
                                 placeholder="Full Name" 
                            />
                            <input 
                                 value={formData.phone} 
                                 onChange={e => setFormData({...formData, phone: e.target.value})} 
-                                className="w-full border p-2 rounded text-sm" 
+                                className="w-full border border-gray-300 p-2 rounded text-sm text-black bg-white font-medium" 
                                 placeholder="Phone Number" 
                            />
                            {user.type === 'seller' && (
                                <input 
                                     value={formData.merchant_id} 
                                     onChange={e => setFormData({...formData, merchant_id: e.target.value})} 
-                                    className="w-full border p-2 rounded text-sm" 
+                                    className="w-full border border-gray-300 p-2 rounded text-sm text-black bg-white font-medium" 
                                     placeholder="Merchant ID" 
                                />
                            )}
                            <div className="flex gap-2">
                                <Button type="submit" isLoading={loading} className="flex-1 text-sm">Save</Button>
-                               <Button onClick={() => setIsEditing(false)} className="flex-1 bg-gray-200 text-gray-800 text-sm">Cancel</Button>
+                               <Button onClick={() => setIsEditing(false)} className="flex-1 bg-gray-200 text-black text-sm">Cancel</Button>
                            </div>
                        </form>
                    )}

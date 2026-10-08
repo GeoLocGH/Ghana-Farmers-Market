@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@google/genai": "^1.30.0",
+    "@supabase/server": "^1.9.1",
     "@supabase/supabase-js": "2",
     "jsqr": "^1.4.0",
     "marked": "^17.0.0",

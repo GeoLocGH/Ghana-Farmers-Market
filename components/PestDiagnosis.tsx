@@ -127,7 +127,7 @@ const PestDiagnosis: React.FC<PestDiagnosisProps> = ({ user }) => {
         </div>
       </div>
 
-      {error && <div className="mt-4 text-red-600 bg-red-100 p-3 rounded-md" role="alert">{error}</div>}
+      {error && <div className="error-notification mt-4 text-black font-semibold bg-red-100 border border-red-400 p-3 rounded-md" role="alert">{error}</div>}
 
       {isLoading && <div className="mt-4 text-center text-gray-600">Analyzing image, please wait...</div>}
 

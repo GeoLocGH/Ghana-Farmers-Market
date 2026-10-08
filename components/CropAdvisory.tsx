@@ -155,31 +155,31 @@ const CropAdvisory: React.FC = () => {
       {/* Input Parameters */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 bg-gray-50 p-4 rounded-xl border border-gray-200">
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">Select Crop</label>
+          <label className="block text-sm font-semibold text-black mb-1">Select Crop</label>
           <select
             value={selectedCrop}
             onChange={(e) => setSelectedCrop(e.target.value as Crop)}
-            className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white text-sm"
+            className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white text-black text-sm"
           >
             {Object.values(Crop).map((c) => (
-              <option key={c} value={c}>{c}</option>
+              <option key={c} value={c} className="text-black bg-white">{c}</option>
             ))}
           </select>
         </div>
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">Planting / Sowing Date</label>
+          <label className="block text-sm font-semibold text-black mb-1">Planting / Sowing Date</label>
           <input
             type="date"
             value={plantingDate}
             onChange={(e) => setPlantingDate(e.target.value)}
-            className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white text-sm"
+            className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white text-black text-sm"
           >
           </input>
         </div>
       </div>
 
       {geoError && !location && (
-        <div className="mb-4 text-xs text-amber-800 bg-amber-50 border border-amber-200 p-2.5 rounded-lg">
+        <div role="alert" className="error-notification mb-4 text-xs text-black font-semibold bg-amber-50 border border-amber-300 p-2.5 rounded-lg">
           GPS Note: {geoError}. Advisory will use regional Ghana conditions.
         </div>
       )}
@@ -196,9 +196,9 @@ const CropAdvisory: React.FC = () => {
       </div>
 
       {error && (
-        <div className="p-3.5 bg-amber-50 text-amber-800 rounded-xl border border-amber-200 mb-4 text-xs sm:text-sm flex items-start gap-2">
+        <div role="alert" className="error-notification p-3.5 bg-amber-50 text-black font-semibold rounded-xl border border-amber-300 mb-4 text-xs sm:text-sm flex items-start gap-2">
           <AlertTriangleIcon className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
-          <span>{error}</span>
+          <span className="text-black">{error}</span>
         </div>
       )}
 

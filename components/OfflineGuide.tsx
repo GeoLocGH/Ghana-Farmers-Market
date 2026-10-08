@@ -307,54 +307,54 @@ const OfflineGuide: React.FC<OfflineGuideProps> = ({ setActiveView }) => {
           </div>
           <form onSubmit={handleCreateTip} className="space-y-3">
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">Tip / Note Title *</label>
+              <label className="block text-xs font-semibold text-black mb-1">Tip / Note Title *</label>
               <input
                 type="text"
                 placeholder="e.g. Organic Soap Spray for Aphids on Cassava"
                 value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}
-                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white text-black"
                 required
               />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-semibold text-gray-700 mb-1">Category</label>
+                <label className="block text-xs font-semibold text-black mb-1">Category</label>
                 <select
                   value={newCategory}
                   onChange={(e) => setNewCategory(e.target.value as OfflineTip['category'])}
-                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white text-black"
                 >
-                  <option value="pest">Pest & Diseases</option>
-                  <option value="soil">Soil & Water Management</option>
-                  <option value="storage">Post-Harvest & Storage</option>
-                  <option value="weather">Weather Preparedness</option>
-                  <option value="contacts">Extension Contacts</option>
-                  <option value="general">General Field Note</option>
+                  <option value="pest" className="text-black bg-white">Pest & Diseases</option>
+                  <option value="soil" className="text-black bg-white">Soil & Water Management</option>
+                  <option value="storage" className="text-black bg-white">Post-Harvest & Storage</option>
+                  <option value="weather" className="text-black bg-white">Weather Preparedness</option>
+                  <option value="contacts" className="text-black bg-white">Extension Contacts</option>
+                  <option value="general" className="text-black bg-white">General Field Note</option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-700 mb-1">Related Crop (Optional)</label>
+                <label className="block text-xs font-semibold text-black mb-1">Related Crop (Optional)</label>
                 <input
                   type="text"
                   placeholder="e.g. Maize, Cocoa, Tomato"
                   value={newCrop}
                   onChange={(e) => setNewCrop(e.target.value)}
-                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white text-black"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">Actionable Content & Instructions *</label>
+              <label className="block text-xs font-semibold text-black mb-1">Actionable Content & Instructions *</label>
               <textarea
                 rows={4}
                 placeholder="Write step-by-step instructions, dosages, observation notes, or telephone contacts..."
                 value={newContent}
                 onChange={(e) => setNewContent(e.target.value)}
-                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white text-black"
                 required
               />
             </div>
@@ -363,7 +363,7 @@ const OfflineGuide: React.FC<OfflineGuideProps> = ({ setActiveView }) => {
               <button
                 type="button"
                 onClick={() => setShowAddForm(false)}
-                className="px-3 py-1.5 text-xs text-gray-600 hover:bg-gray-100 rounded-lg border border-gray-300"
+                className="px-3 py-1.5 text-xs text-black hover:bg-gray-100 rounded-lg border border-gray-300"
               >
                 Cancel
               </button>
@@ -383,13 +383,13 @@ const OfflineGuide: React.FC<OfflineGuideProps> = ({ setActiveView }) => {
         {/* Search & Category Filter */}
         <div className="space-y-3 mb-6">
           <div className="relative">
-            <SearchIcon className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
+            <SearchIcon className="w-4 h-4 text-gray-500 absolute left-3 top-1/2 transform -translate-y-1/2" />
             <input
               type="text"
               placeholder="Search offline tips, pests, MoFA hotlines, storage methods..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2.5 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-white transition-colors"
+              className="w-full pl-9 pr-4 py-2.5 text-sm bg-white text-black border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors"
             />
           </div>
 

@@ -292,19 +292,19 @@ const Auth: React.FC<AuthProps> = ({ user, onLogin, onLogout, setActiveView }) =
                 </p>
                 
                 {authError && (
-                  <div className="mb-4 bg-red-100 text-red-700 p-3 rounded-lg text-sm font-medium">
+                  <div role="alert" className="error-notification mb-4 bg-red-100 border border-red-400 text-black p-3 rounded-lg text-sm font-semibold">
                     {authError}
                   </div>
                 )}
                 
                 <div className="mb-6">
-                  <label className="block text-sm font-medium text-gray-900 bg-white mb-1">Email</label>
+                  <label className="block text-sm font-semibold text-black bg-white mb-1">Email</label>
                   <input
                     type="email"
                     value={loginEmail}
                     onChange={(e) => setLoginEmail(e.target.value)}
                     required
-                    className="w-full px-3 py-2 text-gray-900 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="w-full px-3 py-2 text-black bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                   />
                 </div>
                 <Button type="submit" isLoading={isLoading} className="w-full bg-orange-600 hover:bg-orange-700">
@@ -334,29 +334,29 @@ const Auth: React.FC<AuthProps> = ({ user, onLogin, onLogout, setActiveView }) =
               </button>
             </div>
             {authError && (
-               <div className="mb-4 bg-red-100 text-red-700 p-3 rounded-lg text-sm font-medium">
+               <div role="alert" className="error-notification mb-4 bg-red-100 border border-red-400 text-black p-3 rounded-lg text-sm font-semibold">
                  {authError}
                </div>
             )}
             <form onSubmit={handleLoginSubmit}>
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-900 bg-white mb-1">Email</label>
+                <label className="block text-sm font-semibold text-black bg-white mb-1">Email</label>
                 <input
                   type="email"
                   value={loginEmail}
                   onChange={(e) => setLoginEmail(e.target.value)}
                   required
-                  className="w-full px-3 py-2 text-gray-900 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full px-3 py-2 text-black bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                 />
               </div>
               <div className="mb-2">
-                <label className="block text-sm font-medium text-gray-900 bg-white mb-1">Password</label>
+                <label className="block text-sm font-semibold text-black bg-white mb-1">Password</label>
                 <input
                   type="password"
                   value={loginPass}
                   onChange={(e) => setLoginPass(e.target.value)}
                   required
-                  className="w-full px-3 py-2 text-gray-900 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full px-3 py-2 text-black bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                 />
               </div>
               
@@ -388,15 +388,15 @@ const Auth: React.FC<AuthProps> = ({ user, onLogin, onLogout, setActiveView }) =
             </div>
             
             {authError && (
-               <div className="mb-4 bg-red-100 text-red-700 p-3 rounded-lg text-sm font-medium flex justify-between items-center">
-                 <span>{authError}</span>
+               <div role="alert" className="error-notification mb-4 bg-red-100 border border-red-400 text-black p-3 rounded-lg text-sm font-semibold flex justify-between items-center">
+                 <span className="text-black">{authError}</span>
                </div>
             )}
 
             <form onSubmit={handleRegisterSubmit}>
               {/* Profile Photo Input */}
               <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-900 bg-white mb-1">Profile Photo (Optional)</label>
+                  <label className="block text-sm font-semibold text-black bg-white mb-1">Profile Photo (Optional)</label>
                   <div className="flex items-center gap-2">
                     <div className="h-12 w-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-400 overflow-hidden">
                         {regPhoto ? (
@@ -405,7 +405,7 @@ const Auth: React.FC<AuthProps> = ({ user, onLogin, onLogout, setActiveView }) =
                             <UserCircleIcon className="w-8 h-8"/>
                         )}
                     </div>
-                    <label className="cursor-pointer bg-white border border-gray-300 rounded-md py-2 px-3 text-sm font-medium text-gray-700 hover:bg-gray-50 flex items-center shadow-sm">
+                    <label className="cursor-pointer bg-white border border-gray-300 rounded-md py-2 px-3 text-sm font-medium text-black hover:bg-gray-50 flex items-center shadow-sm">
                         <UploadIcon className="w-4 h-4 mr-2"/>
                         Upload
                         <input type="file" className="hidden" accept="image/*" onChange={(e) => setRegPhoto(e.target.files?.[0] || null)} />
@@ -416,70 +416,70 @@ const Auth: React.FC<AuthProps> = ({ user, onLogin, onLogout, setActiveView }) =
                         </button>
                     )}
                   </div>
-                  <p className="text-xs text-gray-500 mt-1">Upload now or add later in profile.</p>
+                  <p className="text-xs text-gray-600 mt-1">Upload now or add later in profile.</p>
               </div>
 
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-900 bg-white mb-1">Full Name</label>
+                <label className="block text-sm font-semibold text-black bg-white mb-1">Full Name</label>
                 <input
                   type="text"
                   value={regName}
                   onChange={(e) => setRegName(e.target.value)}
                   required
                   placeholder="Kwame Mensah"
-                  className="w-full px-3 py-2 text-gray-900 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full px-3 py-2 text-black bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                 />
               </div>
               
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-900 bg-white mb-1">Phone Number</label>
+                <label className="block text-sm font-semibold text-black bg-white mb-1">Phone Number</label>
                 <input
                   type="tel"
                   value={regPhone}
                   onChange={(e) => setRegPhone((e.target.value || '').replace(/\D/g,'').slice(0,10))}
                   placeholder="024XXXXXXX"
-                  className="w-full px-3 py-2 text-gray-900 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full px-3 py-2 text-black bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                 />
               </div>
 
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-900 bg-white mb-1">Email</label>
+                <label className="block text-sm font-semibold text-black bg-white mb-1">Email</label>
                 <input
                   type="email"
                   value={regEmail}
                   onChange={(e) => setRegEmail(e.target.value)}
                   required
-                  className="w-full px-3 py-2 text-gray-900 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full px-3 py-2 text-black bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3 mb-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-900 bg-white mb-1">Password</label>
+                    <label className="block text-sm font-semibold text-black bg-white mb-1">Password</label>
                     <input
                       type="password"
                       value={regPass}
                       onChange={(e) => setRegPass(e.target.value)}
                       required
-                      className="w-full px-3 py-2 text-gray-900 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                      className="w-full px-3 py-2 text-black bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-900 bg-white mb-1">Repeat Password</label>
+                    <label className="block text-sm font-semibold text-black bg-white mb-1">Repeat Password</label>
                     <input
                       type="password"
                       value={regRepeatPass}
                       onChange={(e) => setRegRepeatPass(e.target.value)}
                       required
-                      className="w-full px-3 py-2 text-gray-900 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                      className="w-full px-3 py-2 text-black bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                     />
                   </div>
               </div>
 
               <div className="mb-6">
-                  <label className="block text-sm font-medium text-gray-900 bg-white mb-1">I am a:</label>
+                  <label className="block text-sm font-semibold text-black bg-white mb-1">I am a:</label>
                   <div className="flex gap-2 flex-wrap">
-                      <label className="flex items-center text-gray-900 cursor-pointer bg-gray-50 px-3 py-2 rounded-lg border hover:bg-gray-100">
+                      <label className="flex items-center text-black cursor-pointer bg-gray-50 px-3 py-2 rounded-lg border hover:bg-gray-100">
                           <input 
                             type="radio" 
                             name="userType" 
@@ -490,7 +490,7 @@ const Auth: React.FC<AuthProps> = ({ user, onLogin, onLogout, setActiveView }) =
                           />
                           Buyer
                       </label>
-                      <label className="flex items-center text-gray-900 cursor-pointer bg-gray-50 px-3 py-2 rounded-lg border hover:bg-gray-100">
+                      <label className="flex items-center text-black cursor-pointer bg-gray-50 px-3 py-2 rounded-lg border hover:bg-gray-100">
                           <input 
                             type="radio" 
                             name="userType" 
@@ -501,7 +501,7 @@ const Auth: React.FC<AuthProps> = ({ user, onLogin, onLogout, setActiveView }) =
                           />
                           Seller
                       </label>
-                      <label className="flex items-center text-gray-900 cursor-pointer bg-gray-50 px-3 py-2 rounded-lg border hover:bg-gray-100">
+                      <label className="flex items-center text-black cursor-pointer bg-gray-50 px-3 py-2 rounded-lg border hover:bg-gray-100">
                           <input 
                             type="radio" 
                             name="userType" 

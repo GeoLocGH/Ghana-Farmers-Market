@@ -817,27 +817,27 @@ const Marketplace: React.FC<MarketplaceProps> = ({ user, setActiveView, initialI
                         </div>
                         <form onSubmit={handleAddItem}>
                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <input type="text" name="name" placeholder="Item Name" value={newItem.name} onChange={(e) => handleInputChange(e)} required className="mt-1 block w-full px-3 py-3 text-base font-medium text-gray-900 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" />
-                                <select name="category" value={newItem.category} onChange={(e) => handleInputChange(e)} className="mt-1 block w-full pl-3 pr-10 py-3 text-base font-medium text-gray-900 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                                <input type="text" name="name" placeholder="Item Name" value={newItem.name} onChange={(e) => handleInputChange(e)} required className="mt-1 block w-full px-3 py-3 text-base font-medium text-black bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" />
+                                <select name="category" value={newItem.category} onChange={(e) => handleInputChange(e)} className="mt-1 block w-full pl-3 pr-10 py-3 text-base font-medium text-black bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
                                     {categories.filter(c => c.name !== 'All').map(c => <option key={c.name} value={c.name}>{c.name}</option>)}
                                 </select>
-                                <input type="text" name="seller" placeholder="Your Name/Business" value={newItem.seller} onChange={(e) => handleInputChange(e)} required className="mt-1 block w-full px-3 py-3 text-base font-medium text-gray-900 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" />
-                                <input type="number" name="price" placeholder="Price (GHS)" value={newItem.price} onChange={(e) => handleInputChange(e)} required className="mt-1 block w-full px-3 py-3 text-base font-medium text-gray-900 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" />
+                                <input type="text" name="seller" placeholder="Your Name/Business" value={newItem.seller} onChange={(e) => handleInputChange(e)} required className="mt-1 block w-full px-3 py-3 text-base font-medium text-black bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" />
+                                <input type="number" name="price" placeholder="Price (GHS)" value={newItem.price} onChange={(e) => handleInputChange(e)} required className="mt-1 block w-full px-3 py-3 text-base font-medium text-black bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" />
                                 
                                 <div className="md:col-span-2">
-                                    <label className="block text-sm font-medium text-gray-700 mb-1">Usage Instructions (Optional)</label>
-                                    <textarea name="usage_instructions" value={newItem.usage_instructions || ''} onChange={(e) => handleInputChange(e)} rows={2} className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" />
+                                    <label className="block text-sm font-semibold text-black mb-1">Usage Instructions (Optional)</label>
+                                    <textarea name="usage_instructions" value={newItem.usage_instructions || ''} onChange={(e) => handleInputChange(e)} rows={2} className="w-full px-3 py-3 text-black bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" />
                                 </div>
                                 <div className="md:col-span-2">
-                                    <label className="block text-sm font-medium text-gray-700 mb-1">Storage Recommendations (Optional)</label>
-                                    <textarea name="storage_recommendations" value={newItem.storage_recommendations || ''} onChange={(e) => handleInputChange(e)} rows={2} className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" />
+                                    <label className="block text-sm font-semibold text-black mb-1">Storage Recommendations (Optional)</label>
+                                    <textarea name="storage_recommendations" value={newItem.storage_recommendations || ''} onChange={(e) => handleInputChange(e)} rows={2} className="w-full px-3 py-3 text-black bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" />
                                 </div>
 
                                 <div className="md:col-span-2">
-                                    <label className="block text-sm font-medium text-gray-700 mb-1">Product Images</label>
+                                    <label className="block text-sm font-semibold text-black mb-1">Product Images</label>
                                     <input type="file" ref={fileInputRef} onChange={(e) => handleImageChange(e)} accept="image/*" multiple className="hidden" />
-                                    <button type="button" onClick={() => fileInputRef.current?.click()} className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                                        <UploadIcon className="w-5 h-5 mr-2 text-gray-500" />
+                                    <button type="button" onClick={() => fileInputRef.current?.click()} className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-black bg-white hover:bg-gray-50">
+                                        <UploadIcon className="w-5 h-5 mr-2 text-gray-600" />
                                         Add Images
                                     </button>
                                     {newItemImagePreviews.length > 0 && (
@@ -854,7 +854,11 @@ const Marketplace: React.FC<MarketplaceProps> = ({ user, setActiveView, initialI
                                     )}
                                 </div>
                             </div>
-                            {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+                            {error && (
+                              <div role="alert" className="error-notification p-3 bg-red-100 border border-red-400 text-black font-semibold text-sm mt-3 rounded-lg">
+                                {error}
+                              </div>
+                            )}
                             <Button type="submit" className="mt-4 w-full" isLoading={isSubmitting}>
                                 {isSubmitting ? 'Uploading...' : 'Add Item'}
                             </Button>
@@ -875,12 +879,12 @@ const Marketplace: React.FC<MarketplaceProps> = ({ user, setActiveView, initialI
                         <form onSubmit={handleUpdateItem}>
                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700">Item Name</label>
-                                    <input type="text" name="name" value={itemToEdit.name} onChange={(e) => handleInputChange(e, true)} required className="mt-1 block w-full px-3 py-3 text-base font-medium text-gray-900 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" />
+                                    <label className="block text-sm font-semibold text-black">Item Name</label>
+                                    <input type="text" name="name" value={itemToEdit.name} onChange={(e) => handleInputChange(e, true)} required className="mt-1 block w-full px-3 py-3 text-base font-medium text-black bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700">Price (GHS)</label>
-                                    <input type="number" name="price" value={itemToEdit.price} onChange={(e) => handleInputChange(e, true)} required className="mt-1 block w-full px-3 py-3 text-base font-medium text-gray-900 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" />
+                                    <label className="block text-sm font-semibold text-black">Price (GHS)</label>
+                                    <input type="number" name="price" value={itemToEdit.price} onChange={(e) => handleInputChange(e, true)} required className="mt-1 block w-full px-3 py-3 text-base font-medium text-black bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" />
                                 </div>
                             </div>
                             <div className="mt-6 flex justify-end gap-3">
@@ -937,13 +941,18 @@ const Marketplace: React.FC<MarketplaceProps> = ({ user, setActiveView, initialI
                             )}
                                 <div ref={chatEndRef} />
                         </div>
+                        {error && (
+                            <div role="alert" className="error-notification px-4 py-2 bg-red-100 border-t border-red-400 text-black font-semibold text-xs">
+                                {error}
+                            </div>
+                        )}
                         <form onSubmit={handleSendMessage} className="p-4 border-t flex gap-2">
                             <input 
                                 type="text"
                                 value={currentMessage}
                                 onChange={(e) => setCurrentMessage(e.target.value)}
                                 placeholder="Type your message..."
-                                className="flex-grow mt-1 block w-full px-3 py-3 text-base font-medium text-gray-900 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                                className="flex-grow mt-1 block w-full px-3 py-3 text-base font-medium text-black bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                             />
                             <Button type="submit" className="px-4">Send</Button>
                         </form>
@@ -952,9 +961,9 @@ const Marketplace: React.FC<MarketplaceProps> = ({ user, setActiveView, initialI
             )}
             
             {permissionDenied && (
-                <div className="col-span-full flex justify-center items-center py-4 bg-orange-50 border border-orange-200 rounded-lg mb-4">
-                    <p className="text-orange-700 font-medium text-sm flex items-center">
-                        <ShieldCheckIcon className="w-5 h-5 mr-2" />
+                <div role="alert" className="error-notification col-span-full flex justify-center items-center py-4 bg-orange-100 border border-orange-400 rounded-lg mb-4">
+                    <p className="text-black font-semibold text-sm flex items-center">
+                        <ShieldCheckIcon className="w-5 h-5 mr-2 text-orange-700" />
                         Viewing offline/demo data. Log in or check permissions for live updates.
                     </p>
                 </div>
@@ -1091,9 +1100,9 @@ const Marketplace: React.FC<MarketplaceProps> = ({ user, setActiveView, initialI
                                 placeholder="Search seeds, tools, fertilizers..." 
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
+                                className="w-full pl-10 pr-4 py-3 text-black bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 outline-none font-medium"
                              />
-                             <div className="absolute left-3 top-3.5 text-gray-400">
+                             <div className="absolute left-3 top-3.5 text-gray-500">
                                  <SearchIcon className="w-5 h-5" />
                              </div>
                          </div>
@@ -1101,7 +1110,7 @@ const Marketplace: React.FC<MarketplaceProps> = ({ user, setActiveView, initialI
                              <div className="relative" ref={filterRef}>
                                  <button 
                                     onClick={() => setIsFilterOpen(!isFilterOpen)}
-                                    className="px-4 py-3 border border-gray-300 rounded-lg bg-white flex items-center gap-2 hover:bg-gray-50 text-gray-700 font-medium"
+                                    className="px-4 py-3 border border-gray-300 rounded-lg bg-white flex items-center gap-2 hover:bg-gray-50 text-black font-medium"
                                  >
                                      <GridIcon className="w-5 h-5" />
                                      {selectedCategory === 'All' ? 'Categories' : selectedCategory}
@@ -1113,7 +1122,7 @@ const Marketplace: React.FC<MarketplaceProps> = ({ user, setActiveView, initialI
                                              <button 
                                                 key={cat.name}
                                                 onClick={() => handleCategoryChange(cat.name)}
-                                                className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 flex items-center gap-2 ${selectedCategory === cat.name ? 'text-green-600 font-bold' : 'text-gray-700'}`}
+                                                className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 flex items-center gap-2 ${selectedCategory === cat.name ? 'text-green-600 font-bold' : 'text-black'}`}
                                              >
                                                  {cat.icon}
                                                  {cat.name}
@@ -1125,7 +1134,7 @@ const Marketplace: React.FC<MarketplaceProps> = ({ user, setActiveView, initialI
                              <select 
                                 value={sortOption}
                                 onChange={(e) => setSortOption(e.target.value)}
-                                className="px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-700 font-medium outline-none focus:ring-2 focus:ring-green-500"
+                                className="px-4 py-3 border border-gray-300 rounded-lg bg-white text-black font-medium outline-none focus:ring-2 focus:ring-green-500"
                              >
                                  <option>Newest</option>
                                  <option>Price: Low to High</option>

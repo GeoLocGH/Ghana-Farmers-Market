@@ -45,10 +45,10 @@ const removeLocalCachedFile = (userId: string, fileId: string, storagePath?: str
 };
 
 /**
- * Normalizes any database row from `user_files` so `download_url` and required fields
- * are always populated even if the database table omits `download_url` or uses alternative column names.
+ * Normalizes any database row from `user_files` (which uses camelCase `downloadUrl`, `storagePath`,
+ * `fileName`, `fileType` in the live Supabase schema) into the application's `UserFile` interface.
  */
-const normalizeUserFileRow = (row: any, fallbackUserId: string): UserFile => {
+export const normalizeUserFileRow = (row: any, fallbackUserId: string): UserFile => {
   const storagePath = row.storage_path || row.storagePath || row.path || '';
   let resolvedDownloadUrl =
     row.download_url ||
@@ -84,60 +84,44 @@ const normalizeUserFileRow = (row: any, fallbackUserId: string): UserFile => {
 };
 
 /**
- * Inserts a record into `user_files`, automatically stripping any column
- * that is missing from the Supabase PostgREST schema cache (e.g., `download_url`).
+ * Inserts a record into `user_files` using the exact columns present in the live Supabase schema
+ * (`downloadUrl`, `storagePath`, `fileName`, `fileType`, `user_id`, `context`, `ai_summary`, `aiSummary`, `notes`, `created_at`, `createdAt`).
  */
-const insertIntoUserFilesResilient = async (
-  payload: Record<string, any>
+const insertIntoUserFiles = async (
+  fileData: Omit<UserFile, 'id'>
 ): Promise<Record<string, any> | null> => {
-  const currentPayload: Record<string, any> = { ...payload };
-  const maxAttempts = 10;
+  const nowIso = fileData.created_at || new Date().toISOString();
 
-  for (let attempt = 0; attempt < maxAttempts; attempt++) {
-    if (Object.keys(currentPayload).length === 0) {
-      return null;
-    }
+  // Primary payload matching the exact live Supabase `user_files` table schema
+  const dbPayload: Record<string, any> = {
+    user_id: fileData.user_id,
+    downloadUrl: fileData.download_url,
+    storagePath: fileData.storage_path,
+    fileName: fileData.file_name,
+    fileType: fileData.file_type,
+    context: fileData.context,
+    ai_summary: fileData.ai_summary || '',
+    aiSummary: fileData.ai_summary || '',
+    notes: fileData.notes || '',
+    created_at: nowIso,
+    createdAt: nowIso,
+  };
 
-    const { data, error } = await supabase
-      .from('user_files')
-      .insert([currentPayload])
-      .select()
-      .maybeSingle();
+  const { data, error } = await supabase
+    .from('user_files')
+    .insert([dbPayload])
+    .select()
+    .maybeSingle();
 
-    if (!error) {
-      return data;
-    }
-
-    const errMsg = error.message || JSON.stringify(error);
-    // Detect PostgREST missing column error:
-    // "Could not find the 'download_url' column of 'user_files' in the schema cache"
-    // or PostgreSQL: column "download_url" of relation "user_files" does not exist
-    const missingColMatch =
-      errMsg.match(/Could not find the '([^']+)' column/i) ||
-      errMsg.match(/column "([^"]+)" of relation "user_files" does not exist/i);
-
-    if (missingColMatch && missingColMatch[1]) {
-      const missingCol = missingColMatch[1];
-      if (missingCol in currentPayload) {
-        console.warn(
-          `Column '${missingCol}' not found in 'user_files' schema cache; retrying insert without '${missingCol}'.`
-        );
-        delete currentPayload[missingCol];
-        continue;
-      }
-    }
-
-    // For any other DB error (e.g. table missing or RLS restriction), log warning and do not block upload
-    console.warn("Non-fatal warning syncing metadata to 'user_files':", errMsg);
-    return null;
+  if (!error) {
+    return data;
   }
 
   return null;
 };
 
 /**
- * Uploads a file to Supabase Storage and syncs metadata to the database.
- * Resilient to missing columns (such as `download_url`) in `user_files` schema cache.
+ * Uploads a file to Supabase Storage and syncs metadata to the `user_files` table.
  * Bucket: 'uploads'
  */
 export const uploadUserFile = async (
@@ -185,19 +169,17 @@ export const uploadUserFile = async (
       .upload(storagePath, file, { upsert: true });
 
     if (uploadError) {
-      console.warn('Supabase storage upload warning, using local Data URI fallback:', uploadError.message);
       publicUrl = await fileToDataUri(file);
     } else {
       // 2. Get Public URL
       const { data } = supabase.storage.from('uploads').getPublicUrl(storagePath);
       publicUrl = data?.publicUrl || (await fileToDataUri(file));
     }
-  } catch (storageErr) {
-    console.warn('Storage upload fallback triggered:', storageErr);
+  } catch {
     publicUrl = await fileToDataUri(file);
   }
 
-  // 3. Create Metadata Object
+  // 3. Create normalized application metadata object
   const fileData: Omit<UserFile, 'id'> = {
     user_id: userId,
     download_url: publicUrl,
@@ -215,11 +197,11 @@ export const uploadUserFile = async (
     ...fileData,
   };
 
-  // 4. Save to 'user_files' table resiliently
+  // 4. Save to 'user_files' table using exact schema columns
   if (userId && context !== 'admin-logo') {
     saveLocalCachedFile(userId, fallbackRecord);
 
-    const insertedData = await insertIntoUserFilesResilient(fileData as Record<string, any>);
+    const insertedData = await insertIntoUserFiles(fileData);
     if (insertedData) {
       const normalized = normalizeUserFileRow(insertedData, userId);
       const finalRecord: UserFile = {
@@ -245,21 +227,12 @@ export const deleteUserFile = async (
 
     // 1. Delete from Storage
     if (storagePath && !storagePath.startsWith('data:')) {
-      const { error: storageError } = await supabase.storage
-        .from('uploads')
-        .remove([storagePath]);
-
-      if (storageError) console.warn('Storage delete warning:', storageError);
+      await supabase.storage.from('uploads').remove([storagePath]);
     }
 
     // 2. Delete from Database
     if (userId && fileId && !String(fileId).startsWith('local-')) {
-      const { error: dbError } = await supabase
-        .from('user_files')
-        .delete()
-        .eq('id', fileId);
-
-      if (dbError) console.warn('DB delete warning:', dbError);
+      await supabase.from('user_files').delete().eq('id', fileId);
     }
   } catch (error) {
     console.error('Error deleting file:', error);
@@ -277,8 +250,7 @@ export const getFreshDownloadUrl = async (storagePath: string): Promise<string> 
       data: { publicUrl },
     } = supabase.storage.from('uploads').getPublicUrl(storagePath);
     return publicUrl || '';
-  } catch (e) {
-    console.warn('Could not get public URL for path:', storagePath, e);
+  } catch {
     return '';
   }
 };
@@ -293,7 +265,6 @@ export const getUserFiles = async (userId: string): Promise<UserFile[]> => {
       .order('created_at', { ascending: false });
 
     if (error) {
-      console.warn('Warning fetching user_files from DB, returning local cache:', error.message);
       return localFiles;
     }
 
@@ -304,16 +275,13 @@ export const getUserFiles = async (userId: string): Promise<UserFile[]> => {
     // Merge DB files with any local-only cached files
     const dbPaths = new Set(dbFiles.map((f) => f.storage_path).filter(Boolean));
     const dbIds = new Set(dbFiles.map((f) => f.id));
-    const merged = [
+    return [
       ...dbFiles,
       ...localFiles.filter(
         (lf) => !dbIds.has(lf.id) && (!lf.storage_path || !dbPaths.has(lf.storage_path))
       ),
     ];
-
-    return merged;
-  } catch (error) {
-    console.error('Error fetching user files:', error);
+  } catch {
     return localFiles;
   }
 };

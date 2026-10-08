@@ -307,9 +307,9 @@ export const HandoverQrScanner: React.FC<HandoverQrScannerProps> = ({
 
               {/* Camera Error Message */}
               {cameraError && (
-                <div className="absolute inset-0 bg-black/85 text-white p-5 flex flex-col items-center justify-center text-center">
-                  <CameraIcon className="w-10 h-10 text-red-400 mb-2" />
-                  <p className="text-xs text-red-200 mb-4">{cameraError}</p>
+                <div role="alert" className="error-notification absolute inset-0 bg-red-100/95 text-black p-5 flex flex-col items-center justify-center text-center">
+                  <CameraIcon className="w-10 h-10 text-red-600 mb-2" />
+                  <p className="text-xs text-black font-semibold mb-4">{cameraError}</p>
                   <div className="flex gap-2">
                     <Button 
                       onClick={startCamera} 
@@ -319,7 +319,7 @@ export const HandoverQrScanner: React.FC<HandoverQrScannerProps> = ({
                     </Button>
                     <button 
                       onClick={() => setActiveMode('manual')}
-                      className="text-xs py-1.5 px-3 bg-white/20 hover:bg-white/30 text-white rounded-lg"
+                      className="text-xs py-1.5 px-3 bg-white hover:bg-gray-100 text-black font-semibold border border-gray-300 rounded-lg"
                     >
                       Use Manual PIN
                     </button>
@@ -371,7 +371,7 @@ export const HandoverQrScanner: React.FC<HandoverQrScannerProps> = ({
             </div>
 
             {cameraError && (
-              <p className="text-xs text-red-600 font-semibold">{cameraError}</p>
+              <div role="alert" className="error-notification p-3 bg-red-100 border border-red-400 rounded-lg text-xs text-black font-semibold">{cameraError}</div>
             )}
           </div>
         )}
@@ -380,7 +380,7 @@ export const HandoverQrScanner: React.FC<HandoverQrScannerProps> = ({
         {activeMode === 'manual' && (
           <form onSubmit={handleManualSubmit} className="space-y-4 py-2">
             <div>
-              <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+              <label className="block text-xs font-bold text-black uppercase tracking-wider mb-1">
                 Verification PIN / Order Code
               </label>
               <input
@@ -388,16 +388,16 @@ export const HandoverQrScanner: React.FC<HandoverQrScannerProps> = ({
                 value={manualCode}
                 onChange={(e) => setManualCode(e.target.value.toUpperCase())}
                 placeholder="e.g. GH-7782-X9 or ORD-7782"
-                className="w-full text-center text-lg font-mono font-bold tracking-widest p-3 border-2 border-green-700 rounded-xl bg-green-50/30 text-green-950 focus:outline-none focus:ring-2 focus:ring-green-500 uppercase"
+                className="w-full text-center text-lg font-mono font-bold tracking-widest p-3 border-2 border-green-700 rounded-xl bg-white text-black focus:outline-none focus:ring-2 focus:ring-green-500 uppercase"
                 autoFocus
               />
-              <p className="text-[11px] text-gray-500 mt-1">
+              <p className="text-[11px] text-gray-600 mt-1">
                 Found on the buyer's mobile pass or printed consignment slip.
               </p>
             </div>
 
             {manualError && (
-              <p className="text-xs text-red-600 font-semibold">{manualError}</p>
+              <div role="alert" className="error-notification p-3 bg-red-100 border border-red-400 rounded-lg text-xs text-black font-semibold">{manualError}</div>
             )}
 
             <Button

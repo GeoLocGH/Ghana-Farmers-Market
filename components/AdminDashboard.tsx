@@ -156,17 +156,17 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogin }) => {
                           <ShieldCheckIcon className="w-8 h-8 text-red-600" />
                       </div>
                   </div>
-                  <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">Admin Access</h2>
+                  <h2 className="text-2xl font-bold text-black text-center mb-6">Admin Access</h2>
                   <form onSubmit={handleAdminLogin}>
                       <div className="mb-4">
-                          <label className="block text-sm font-medium text-gray-700 mb-1">Admin Email</label>
-                          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 outline-none" required placeholder="admin@agrosourcing.com" />
+                          <label className="block text-sm font-semibold text-black mb-1">Admin Email</label>
+                          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-3 py-3 text-black bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 outline-none" required placeholder="admin@agrosourcing.com" />
                       </div>
                       <div className="mb-6">
-                          <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 outline-none" required placeholder="••••••••" />
+                          <label className="block text-sm font-semibold text-black mb-1">Password</label>
+                          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-3 py-3 text-black bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 outline-none" required placeholder="••••••••" />
                       </div>
-                      {error && <div className="mb-4 text-red-600 text-sm bg-red-50 p-3 rounded">{error}</div>}
+                      {error && <div role="alert" className="error-notification mb-4 text-black font-semibold text-sm bg-red-100 border border-red-400 p-3 rounded-lg">{error}</div>}
                       <Button type="submit" isLoading={isLoading} className="w-full bg-red-700 hover:bg-red-800">Access Dashboard</Button>
                   </form>
               </Card>
@@ -203,7 +203,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogin }) => {
                   </div>
               </div>
               {bucketStatus === 'missing' && (
-                  <div className="mt-3 bg-red-50 p-3 rounded text-xs text-red-800 font-mono">
+                  <div role="alert" className="error-notification mt-3 bg-red-100 border border-red-400 p-3 rounded text-xs text-black font-semibold font-mono">
                       Run the SQL script provided in the assistant chat to create the 'uploads' bucket.
                   </div>
               )}

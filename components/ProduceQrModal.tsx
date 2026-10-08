@@ -191,8 +191,8 @@ export const ProduceQrModal: React.FC<ProduceQrModalProps> = ({ item, isOpen, on
                 Include on Label
               </h4>
 
-              <div className="space-y-2 text-xs font-medium text-gray-800">
-                <label className="flex items-center gap-2 cursor-pointer">
+              <div className="space-y-2 text-xs font-medium text-black">
+                <label className="flex items-center gap-2 cursor-pointer text-black">
                   <input
                     type="checkbox"
                     checked={showPrice}
@@ -202,7 +202,7 @@ export const ProduceQrModal: React.FC<ProduceQrModalProps> = ({ item, isOpen, on
                   <span>Show Wholesale Price (GHS {item.price.toFixed(2)})</span>
                 </label>
 
-                <label className="flex items-center gap-2 cursor-pointer">
+                <label className="flex items-center gap-2 cursor-pointer text-black">
                   <input
                     type="checkbox"
                     checked={showSellerContact}
@@ -212,7 +212,7 @@ export const ProduceQrModal: React.FC<ProduceQrModalProps> = ({ item, isOpen, on
                   <span>Show Farmer / Seller Details & Phone</span>
                 </label>
 
-                <label className="flex items-center gap-2 cursor-pointer">
+                <label className="flex items-center gap-2 cursor-pointer text-black">
                   <input
                     type="checkbox"
                     checked={showStorage}
@@ -226,25 +226,25 @@ export const ProduceQrModal: React.FC<ProduceQrModalProps> = ({ item, isOpen, on
               {/* Batch & Harvest Input */}
               <div className="pt-2 border-t border-gray-200 grid grid-cols-2 gap-2">
                 <div>
-                  <label className="block text-[11px] font-bold text-gray-600 mb-1">
+                  <label className="block text-[11px] font-bold text-black mb-1">
                     Harvest Date
                   </label>
                   <input
                     type="date"
                     value={harvestDate}
                     onChange={(e) => setHarvestDate(e.target.value)}
-                    className="w-full text-xs p-1.5 border border-gray-300 rounded bg-white text-gray-900"
+                    className="w-full text-xs p-1.5 border border-gray-300 rounded bg-white text-black"
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-gray-600 mb-1">
+                  <label className="block text-[11px] font-bold text-black mb-1">
                     Batch / Lot ID
                   </label>
                   <input
                     type="text"
                     value={batchNumber}
                     onChange={(e) => setBatchNumber(e.target.value)}
-                    className="w-full text-xs p-1.5 border border-gray-300 rounded bg-white text-gray-900"
+                    className="w-full text-xs p-1.5 border border-gray-300 rounded bg-white text-black"
                     placeholder="Batch ID"
                   />
                 </div>

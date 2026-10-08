@@ -318,19 +318,19 @@ const PriceAlerts: React.FC = () => {
 
       {/* Crop Selector Controls */}
       <div className="mb-4 bg-gray-50 p-4 rounded-xl border border-gray-200">
-        <label htmlFor="crop-select" className="block text-sm font-semibold text-gray-800 mb-1">
+        <label htmlFor="crop-select" className="block text-sm font-semibold text-black mb-1">
           Select Crop:
         </label>
         <select
           id="crop-select"
           value={selectedCrop}
           onChange={(e) => setSelectedCrop(e.target.value as Crop)}
-          className="block w-full px-3 py-2.5 text-base font-medium text-gray-900 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+          className="block w-full px-3 py-2.5 text-base font-medium text-black bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
         >
           {Object.values(Crop).map((crop) => {
             const isCachedForCrop = cachedCrops.includes(crop);
             return (
-              <option key={crop} value={crop}>
+              <option key={crop} value={crop} className="text-black bg-white">
                 {crop} {isCachedForCrop ? ' (Available Offline ✓)' : ''}
               </option>
             );

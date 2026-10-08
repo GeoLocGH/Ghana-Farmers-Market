@@ -400,66 +400,66 @@ const DigitalWallet: React.FC<DigitalWalletProps> = ({ user }) => {
                     )}
 
                     <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Recipient Network</label>
+                    <label className="block text-sm font-semibold text-black mb-1">Recipient Network</label>
                     <select 
                         value={recipientNetwork}
                         onChange={(e) => setRecipientNetwork(e.target.value)}
-                        className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-gray-900"
+                        className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-black"
                     >
                         {networks.map(network => (
-                            <option key={network} value={network}>{network}</option>
+                            <option key={network} value={network} className="text-black bg-white">{network}</option>
                         ))}
                     </select>
                     </div>
                     <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Recipient Number</label>
+                    <label className="block text-sm font-semibold text-black mb-1">Recipient Number</label>
                     <input 
                         type="tel" 
                         value={recipientPhone}
                         onChange={(e) => setRecipientPhone((e.target.value || '').replace(/\D/g,'').slice(0,10))}
                         placeholder="024XXXXXXX"
-                        className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none text-gray-900"
+                        className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-black"
                         required
                     />
                     </div>
                     <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Amount (GHS)</label>
+                    <label className="block text-sm font-semibold text-black mb-1">Amount (GHS)</label>
                     <input 
                         type="number" 
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
                         placeholder="0.00"
-                        className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none text-gray-900"
+                        className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-black"
                         required
                     />
                     </div>
                     <div className="mb-6">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Reference (Optional)</label>
+                    <label className="block text-sm font-semibold text-black mb-1">Reference (Optional)</label>
                     <input 
                         type="text" 
                         value={reference}
                         onChange={(e) => setReference(e.target.value)}
                         placeholder="e.g. Payment for Seeds"
-                        className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none text-gray-900"
+                        className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-black"
                     />
                     </div>
                     <Button type="submit" className="w-full bg-yellow-600 hover:bg-yellow-700 font-bold">Next</Button>
                 </form>
              ) : (
                  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                     <h3 className="text-xl font-bold text-gray-800 mb-4 text-center">Confirm Transaction</h3>
+                     <h3 className="text-xl font-bold text-black mb-4 text-center">Confirm Transaction</h3>
                      
                      <div className="space-y-3 mb-6">
                          <div className="flex justify-between border-b pb-2">
                              <span className="text-gray-600">Recipient:</span>
-                             <span className="font-bold text-gray-900 text-right">
+                             <span className="font-bold text-black text-right">
                                  {simulatedRecipientName}<br/>
                                  <span className="text-xs font-normal text-gray-500">{recipientPhone} ({recipientNetwork})</span>
                              </span>
                          </div>
                          <div className="flex justify-between">
                              <span className="text-gray-600">Amount:</span>
-                             <span className="font-bold text-gray-900">GHS {parseFloat(amount).toFixed(2)}</span>
+                             <span className="font-bold text-black">GHS {parseFloat(amount).toFixed(2)}</span>
                          </div>
                          <div className="flex justify-between text-sm">
                              <span className="text-gray-500">Fee (1%):</span>
@@ -470,25 +470,25 @@ const DigitalWallet: React.FC<DigitalWalletProps> = ({ user }) => {
                              <span className="text-gray-700">GHS {transactionFees.elevy.toFixed(2)}</span>
                          </div>
                          <div className="flex justify-between border-t pt-2 mt-2">
-                             <span className="font-bold text-gray-800">Total Deduction:</span>
+                             <span className="font-bold text-black">Total Deduction:</span>
                              <span className="font-bold text-red-600 text-lg">GHS {transactionFees.total.toFixed(2)}</span>
                          </div>
                      </div>
 
                      <div className="mb-6">
-                         <label className="block text-sm font-medium text-gray-700 mb-1 text-center">Enter Mobile Money PIN</label>
+                         <label className="block text-sm font-semibold text-black mb-1 text-center">Enter Mobile Money PIN</label>
                          <input 
                             type="password" 
                             value={pin}
                             onChange={(e) => setPin(e.target.value.slice(0, 4))}
                             placeholder="••••"
-                            className="block w-32 mx-auto text-center tracking-widest text-2xl px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none text-gray-900"
+                            className="block w-32 mx-auto text-center tracking-widest text-2xl px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-black"
                             maxLength={4}
                          />
                      </div>
 
                      <div className="flex gap-3">
-                         <Button onClick={() => setTransferStep('INPUT')} className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800">Back</Button>
+                         <Button onClick={() => setTransferStep('INPUT')} className="flex-1 bg-gray-200 hover:bg-gray-300 text-black">Back</Button>
                          <Button onClick={confirmTransfer} className="flex-1 bg-yellow-600 hover:bg-yellow-700">Confirm</Button>
                      </div>
                  </div>
@@ -525,14 +525,14 @@ const DigitalWallet: React.FC<DigitalWalletProps> = ({ user }) => {
                         </div>
                         <p className="text-gray-600 text-sm">Scan to send money to my wallet</p>
                         {user ? (
-                            <p className="text-gray-800 font-bold mt-1">{user.phone} ({user.name})</p>
+                            <p className="text-black font-bold mt-1">{user.phone} ({user.name})</p>
                         ) : (
-                            <p className="text-red-500 text-sm mt-2">Please login to see your details</p>
+                            <p role="alert" className="error-notification text-black font-semibold bg-red-100 border border-red-400 p-2 rounded text-sm mt-2">Please login to see your details</p>
                         )}
                     </div>
                 ) : (
                     <div className="text-center">
-                        <h3 className="text-xl font-bold text-gray-800 mb-4">Scan to Pay</h3>
+                        <h3 className="text-xl font-bold text-black mb-4">Scan to Pay</h3>
                         <div className="bg-gray-900 rounded-xl h-64 flex items-center justify-center relative overflow-hidden mb-4">
                             <CameraIcon className="w-16 h-16 text-gray-500" />
                             {/* Scanning Frame */}
@@ -549,41 +549,41 @@ const DigitalWallet: React.FC<DigitalWalletProps> = ({ user }) => {
 
         {activeTab === 'MERCHANT' && (
           <form onSubmit={handlePayMerchant} className="max-w-md mx-auto animate-fade-in">
-            <h3 className="text-xl font-bold text-gray-800 mb-4">MoMo Pay / Merchant Pay</h3>
-            <div className="bg-gray-100 p-3 rounded-lg mb-4 text-sm text-gray-600">
+            <h3 className="text-xl font-bold text-black mb-4">MoMo Pay / Merchant Pay</h3>
+            <div className="bg-gray-100 p-3 rounded-lg mb-4 text-sm text-black">
                 Enter the Merchant ID displayed at the shop or stall.
             </div>
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Merchant Network</label>
+              <label className="block text-sm font-semibold text-black mb-1">Merchant Network</label>
               <select 
                  value={merchantNetwork}
                  onChange={(e) => setMerchantNetwork(e.target.value)}
-                 className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-gray-900"
+                 className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-black"
               >
                   {networks.map(network => (
-                    <option key={network} value={network}>{network}</option>
+                    <option key={network} value={network} className="text-black bg-white">{network}</option>
                   ))}
               </select>
             </div>
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Merchant ID / Till Number</label>
+              <label className="block text-sm font-semibold text-black mb-1">Merchant ID / Till Number</label>
               <input 
                 type="text" 
                 value={merchantId}
                 onChange={(e) => setMerchantId(e.target.value)}
                 placeholder="Enter Merchant ID"
-                className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none text-gray-900"
+                className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-black"
                 required
               />
             </div>
             <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Amount (GHS)</label>
+              <label className="block text-sm font-semibold text-black mb-1">Amount (GHS)</label>
               <input 
                 type="number" 
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
                 placeholder="0.00"
-                className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none text-gray-900"
+                className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-black"
                 required
               />
             </div>
@@ -593,28 +593,28 @@ const DigitalWallet: React.FC<DigitalWalletProps> = ({ user }) => {
 
         {activeTab === 'LOAN' && (
             <form onSubmit={handleRequestLoan} className="max-w-md mx-auto animate-fade-in">
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Quick Loans</h3>
+                <h3 className="text-xl font-bold text-black mb-2">Quick Loans</h3>
                 <div className="bg-blue-50 p-4 rounded-lg border border-blue-200 mb-4">
-                    <p className="text-sm text-blue-800 font-medium"><strong>QwikLoan / XpressLoan</strong></p>
-                    <p className="text-xs text-blue-600 mt-1">No collateral required. Instant disbursement to your wallet based on your transaction history.</p>
+                    <p className="text-sm text-black font-medium"><strong>QwikLoan / XpressLoan</strong></p>
+                    <p className="text-xs text-black mt-1">No collateral required. Instant disbursement to your wallet based on your transaction history.</p>
                 </div>
                 <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Loan Amount Needed (GHS)</label>
+                    <label className="block text-sm font-semibold text-black mb-1">Loan Amount Needed (GHS)</label>
                      <input 
                         type="number" 
                         value={loanAmount}
                         onChange={(e) => setLoanAmount(e.target.value)}
                         placeholder="Max limit: GHS 2,000.00"
-                        className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none text-gray-900"
+                        className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-black"
                         required
                     />
                 </div>
                 <div className="mb-6">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Repayment Terms</label>
-                     <select className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-gray-900">
-                         <option>30 Days (6.9% interest)</option>
-                         <option>60 Days (12% interest)</option>
-                         <option>90 Days (18% interest)</option>
+                    <label className="block text-sm font-semibold text-black mb-1">Repayment Terms</label>
+                     <select className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-black">
+                         <option className="text-black bg-white">30 Days (6.9% interest)</option>
+                         <option className="text-black bg-white">60 Days (12% interest)</option>
+                         <option className="text-black bg-white">90 Days (18% interest)</option>
                      </select>
                 </div>
                  <Button type="submit" className="w-full bg-yellow-600 hover:bg-yellow-700 font-bold">Apply Now</Button>
@@ -623,49 +623,49 @@ const DigitalWallet: React.FC<DigitalWalletProps> = ({ user }) => {
 
         {activeTab === 'BILLS' && (
              <form onSubmit={handlePayBill} className="max-w-md mx-auto animate-fade-in">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">Pay Bills</h3>
+                <h3 className="text-xl font-bold text-black mb-4">Pay Bills</h3>
                 <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Service Provider</label>
+                    <label className="block text-sm font-semibold text-black mb-1">Service Provider</label>
                      <select 
                         value={billType}
                         onChange={(e) => setBillType(e.target.value)}
-                        className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-gray-900"
+                        className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-black"
                     >
-                         <optgroup label="Utilities">
-                            <option value="Electricity (ECG) - Prepaid">ECG Prepaid (Token)</option>
-                            <option value="Electricity (ECG) - Postpaid">ECG Postpaid</option>
-                            <option value="Ghana Water (GWCL)">Ghana Water (GWCL)</option>
+                         <optgroup label="Utilities" className="text-black bg-white">
+                            <option value="Electricity (ECG) - Prepaid" className="text-black bg-white">ECG Prepaid (Token)</option>
+                            <option value="Electricity (ECG) - Postpaid" className="text-black bg-white">ECG Postpaid</option>
+                            <option value="Ghana Water (GWCL)" className="text-black bg-white">Ghana Water (GWCL)</option>
                          </optgroup>
-                         <optgroup label="TV & Internet">
-                            <option value="DSTV">DSTV Subscription</option>
-                            <option value="GOtv">GOtv Subscription</option>
-                            <option value="StarTimes">StarTimes</option>
-                            <option value="MTN Fibre">MTN Fibre Broadband</option>
-                            <option value="Vodafone Broadband">Vodafone Broadband</option>
+                         <optgroup label="TV & Internet" className="text-black bg-white">
+                            <option value="DSTV" className="text-black bg-white">DSTV Subscription</option>
+                            <option value="GOtv" className="text-black bg-white">GOtv Subscription</option>
+                            <option value="StarTimes" className="text-black bg-white">StarTimes</option>
+                            <option value="MTN Fibre" className="text-black bg-white">MTN Fibre Broadband</option>
+                            <option value="Vodafone Broadband" className="text-black bg-white">Vodafone Broadband</option>
                          </optgroup>
-                         <optgroup label="Other">
-                            <option value="School Fees">School Fees (GhIPSS)</option>
-                            <option value="Cocoa Board">Cocoa Board Payments</option>
+                         <optgroup label="Other" className="text-black bg-white">
+                            <option value="School Fees" className="text-black bg-white">School Fees (GhIPSS)</option>
+                            <option value="Cocoa Board" className="text-black bg-white">Cocoa Board Payments</option>
                          </optgroup>
                      </select>
                 </div>
                 <div className="mb-4">
-                     <label className="block text-sm font-medium text-gray-700 mb-1">Account / Meter Number</label>
+                     <label className="block text-sm font-semibold text-black mb-1">Account / Meter Number</label>
                      <input 
                         type="text" 
                         placeholder="Enter Account Number"
-                        className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none text-gray-900"
+                        className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-black"
                         required
                     />
                 </div>
                  <div className="mb-6">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Amount (GHS)</label>
+                    <label className="block text-sm font-semibold text-black mb-1">Amount (GHS)</label>
                     <input 
                         type="number" 
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
                         placeholder="0.00"
-                        className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none text-gray-900"
+                        className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-black"
                         required
                     />
                 </div>
@@ -680,12 +680,12 @@ const DigitalWallet: React.FC<DigitalWalletProps> = ({ user }) => {
                          <ShieldCheckIcon className="w-12 h-12" />
                      </div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Agro-Insurance (aYo / Star Micro)</h3>
+                <h3 className="text-xl font-bold text-black mb-2">Agro-Insurance (aYo / Star Micro)</h3>
                 <p className="text-gray-600 mb-6">Protect your farm against drought, pests, and flooding with instant micro-insurance.</p>
                 
                 <div className="bg-white border border-gray-200 rounded-lg p-4 text-left mb-6 shadow-sm">
                     <div className="flex justify-between items-center border-b pb-2 mb-2">
-                        <span className="font-semibold text-gray-800">Farmer's Shield (Basic)</span>
+                        <span className="font-semibold text-black">Farmer's Shield (Basic)</span>
                         <span className="text-green-600 font-bold">GHS 15.00 / mo</span>
                     </div>
                     <ul className="text-sm text-gray-600 space-y-1 list-disc list-inside">
@@ -697,7 +697,7 @@ const DigitalWallet: React.FC<DigitalWalletProps> = ({ user }) => {
 
                  <div className="bg-white border border-gray-200 rounded-lg p-4 text-left mb-6 shadow-sm">
                     <div className="flex justify-between items-center border-b pb-2 mb-2">
-                        <span className="font-semibold text-gray-800">Farmer's Shield (Premium)</span>
+                        <span className="font-semibold text-black">Farmer's Shield (Premium)</span>
                         <span className="text-green-600 font-bold">GHS 30.00 / mo</span>
                     </div>
                     <ul className="text-sm text-gray-600 space-y-1 list-disc list-inside">
@@ -715,7 +715,7 @@ const DigitalWallet: React.FC<DigitalWalletProps> = ({ user }) => {
         {activeTab === 'HISTORY' && (
              <div className="animate-fade-in">
                  <div className="flex justify-between items-center mb-4">
-                     <h3 className="text-xl font-bold text-gray-800">Transaction History</h3>
+                     <h3 className="text-xl font-bold text-black">Transaction History</h3>
                      <button onClick={() => setActiveTab('LINK_ACCOUNT')} className="text-sm text-yellow-600 hover:underline font-medium">Link Bank/Card</button>
                  </div>
                  
@@ -725,7 +725,7 @@ const DigitalWallet: React.FC<DigitalWalletProps> = ({ user }) => {
                          {linkedAccounts.map(acc => (
                              <div key={acc.id} className="min-w-[200px] p-3 bg-white border border-gray-200 rounded-lg shadow-sm flex flex-col">
                                  <span className="text-xs text-gray-500 mb-1">{acc.provider} ({acc.type})</span>
-                                 <span className="font-bold text-gray-800">{acc.accountNumber}</span>
+                                 <span className="font-bold text-black">{acc.accountNumber}</span>
                                  <span className="text-xs text-gray-400 mt-auto">{acc.accountName}</span>
                              </div>
                          ))}
@@ -739,7 +739,7 @@ const DigitalWallet: React.FC<DigitalWalletProps> = ({ user }) => {
                                  <ArrowDownIcon className="w-4 h-4" />
                              </div>
                              <div>
-                                 <p className="font-bold text-gray-800">Deposit</p>
+                                 <p className="font-bold text-black">Deposit</p>
                                  <p className="text-xs text-gray-500">Today, 10:23 AM</p>
                              </div>
                         </div>
@@ -751,11 +751,11 @@ const DigitalWallet: React.FC<DigitalWalletProps> = ({ user }) => {
                                  <ArrowUpIcon className="w-4 h-4" />
                              </div>
                              <div>
-                                 <p className="font-bold text-gray-800">Transfer to Kwame</p>
+                                 <p className="font-bold text-black">Transfer to Kwame</p>
                                  <p className="text-xs text-gray-500">Yesterday, 2:45 PM</p>
                              </div>
                         </div>
-                        <span className="font-bold text-gray-800">- GHS 120.00</span>
+                        <span className="font-bold text-black">- GHS 120.00</span>
                     </div>
                     <div className="bg-white p-4 rounded-lg border border-gray-200 flex justify-between items-center">
                         <div className="flex items-center gap-3">
@@ -763,11 +763,11 @@ const DigitalWallet: React.FC<DigitalWalletProps> = ({ user }) => {
                                  <LightningIcon className="w-4 h-4" />
                              </div>
                              <div>
-                                 <p className="font-bold text-gray-800">ECG Prepaid</p>
+                                 <p className="font-bold text-black">ECG Prepaid</p>
                                  <p className="text-xs text-gray-500">22 Oct, 9:00 AM</p>
                              </div>
                         </div>
-                        <span className="font-bold text-gray-800">- GHS 50.00</span>
+                        <span className="font-bold text-black">- GHS 50.00</span>
                     </div>
                  </div>
              </div>
@@ -775,11 +775,11 @@ const DigitalWallet: React.FC<DigitalWalletProps> = ({ user }) => {
 
         {activeTab === 'LINK_ACCOUNT' && (
              <form onSubmit={handleLinkAccount} className="max-w-md mx-auto animate-fade-in">
-                 <h3 className="text-xl font-bold text-gray-800 mb-4">Link New Account</h3>
+                 <h3 className="text-xl font-bold text-black mb-4">Link New Account</h3>
                  <div className="mb-4">
-                     <label className="block text-sm font-medium text-gray-700 mb-1">Account Type</label>
+                     <label className="block text-sm font-semibold text-black mb-1">Account Type</label>
                      <div className="flex gap-4">
-                         <label className="flex items-center">
+                         <label className="flex items-center text-black font-medium cursor-pointer">
                              <input 
                                 type="radio" 
                                 name="accType" 
@@ -788,7 +788,7 @@ const DigitalWallet: React.FC<DigitalWalletProps> = ({ user }) => {
                                 className="mr-2"
                              /> Mobile Money
                          </label>
-                         <label className="flex items-center">
+                         <label className="flex items-center text-black font-medium cursor-pointer">
                              <input 
                                 type="radio" 
                                 name="accType" 
@@ -800,22 +800,22 @@ const DigitalWallet: React.FC<DigitalWalletProps> = ({ user }) => {
                      </div>
                  </div>
                  <div className="mb-4">
-                     <label className="block text-sm font-medium text-gray-700 mb-1">Provider</label>
+                     <label className="block text-sm font-semibold text-black mb-1">Provider</label>
                      <select 
                         value={newProvider}
                         onChange={(e) => setNewProvider(e.target.value)}
-                        className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-gray-900"
+                        className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-black"
                     >
-                         {(newAccountType === 'MOMO' ? networks : banks).map(p => <option key={p} value={p}>{p}</option>)}
+                         {(newAccountType === 'MOMO' ? networks : banks).map(p => <option key={p} value={p} className="text-black bg-white">{p}</option>)}
                      </select>
                  </div>
                  <div className="mb-6">
-                     <label className="block text-sm font-medium text-gray-700 mb-1">{newAccountType === 'MOMO' ? 'Phone Number' : 'Account Number'}</label>
+                     <label className="block text-sm font-semibold text-black mb-1">{newAccountType === 'MOMO' ? 'Phone Number' : 'Account Number'}</label>
                      <input 
                         type="text" 
                         value={newAccountNumber}
                         onChange={(e) => setNewAccountNumber(e.target.value)}
-                        className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none text-gray-900"
+                        className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-black"
                         required
                      />
                  </div>
@@ -826,32 +826,32 @@ const DigitalWallet: React.FC<DigitalWalletProps> = ({ user }) => {
         {/* Deposit/Withdraw Modals */}
         {(activeTab === 'DEPOSIT' || activeTab === 'WITHDRAW') && (
             <div className="animate-fade-in max-w-md mx-auto">
-                 <h3 className="text-xl font-bold text-gray-800 mb-4">{activeTab === 'DEPOSIT' ? 'Fund Wallet' : 'Withdraw to Account'}</h3>
+                 <h3 className="text-xl font-bold text-black mb-4">{activeTab === 'DEPOSIT' ? 'Fund Wallet' : 'Withdraw to Account'}</h3>
                  
                  {withdrawStep === 'INPUT' ? (
                      <form onSubmit={activeTab === 'DEPOSIT' ? handleDeposit : handleWithdrawInput}>
                         <div className="mb-4">
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Select Source/Destination</label>
+                            <label className="block text-sm font-semibold text-black mb-1">Select Source/Destination</label>
                             <select 
                                 value={selectedAccount}
                                 onChange={(e) => setSelectedAccount(e.target.value)}
-                                className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-gray-900"
+                                className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-black"
                                 required
                             >
-                                <option value="">Select Account</option>
+                                <option value="" className="text-black bg-white">Select Account</option>
                                 {linkedAccounts.map(acc => (
-                                    <option key={acc.id} value={acc.id}>{acc.provider} - {acc.accountNumber}</option>
+                                    <option key={acc.id} value={acc.id} className="text-black bg-white">{acc.provider} - {acc.accountNumber}</option>
                                 ))}
                             </select>
                         </div>
                         <div className="mb-6">
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Amount (GHS)</label>
+                            <label className="block text-sm font-semibold text-black mb-1">Amount (GHS)</label>
                             <input 
                                 type="number" 
                                 value={amount}
                                 onChange={(e) => setAmount(e.target.value)}
                                 placeholder="0.00"
-                                className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none text-gray-900"
+                                className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-black"
                                 required
                             />
                         </div>
@@ -859,7 +859,7 @@ const DigitalWallet: React.FC<DigitalWalletProps> = ({ user }) => {
                      </form>
                  ) : (
                      <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 text-center">
-                         <h4 className="font-bold text-lg text-gray-800 mb-4">Confirm Withdrawal</h4>
+                         <h4 className="font-bold text-lg text-black mb-4">Confirm Withdrawal</h4>
                          <p className="text-gray-600 mb-2">Withdraw <strong>GHS {parseFloat(amount).toFixed(2)}</strong> to linked account?</p>
                          <div className="mb-6">
                              <input 
@@ -867,12 +867,12 @@ const DigitalWallet: React.FC<DigitalWalletProps> = ({ user }) => {
                                 value={pin}
                                 onChange={(e) => setPin(e.target.value.slice(0, 4))}
                                 placeholder="Enter PIN"
-                                className="block w-32 mx-auto text-center tracking-widest text-2xl px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none text-gray-900"
+                                className="block w-32 mx-auto text-center tracking-widest text-2xl px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-black"
                                 maxLength={4}
                              />
                          </div>
                          <div className="flex gap-3">
-                             <Button onClick={() => setWithdrawStep('INPUT')} className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800">Back</Button>
+                             <Button onClick={() => setWithdrawStep('INPUT')} className="flex-1 bg-gray-200 hover:bg-gray-300 text-black">Back</Button>
                              <Button onClick={confirmWithdraw} className="flex-1 bg-yellow-600 hover:bg-yellow-700">Confirm</Button>
                          </div>
                      </div>
@@ -884,17 +884,17 @@ const DigitalWallet: React.FC<DigitalWalletProps> = ({ user }) => {
         {showOtpModal && (
             <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
                 <div className="bg-white rounded-lg shadow-xl p-6 max-w-sm w-full">
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">Approve Request</h3>
+                    <h3 className="text-lg font-bold text-black mb-2">Approve Request</h3>
                     <p className="text-gray-600 text-sm mb-4">A prompt has been sent to your phone. Please enter the OTP or approve the transaction to fund your wallet.</p>
                     <input 
                         type="text" 
                         value={otp}
                         onChange={(e) => setOtp(e.target.value)}
                         placeholder="Enter OTP (e.g. 1234)"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg mb-4 focus:ring-2 focus:ring-yellow-500 outline-none text-gray-900"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg mb-4 focus:ring-2 focus:ring-yellow-500 outline-none bg-white text-black"
                     />
                     <div className="flex gap-3">
-                        <Button onClick={() => setShowOtpModal(false)} className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800">Cancel</Button>
+                        <Button onClick={() => setShowOtpModal(false)} className="flex-1 bg-gray-200 hover:bg-gray-300 text-black">Cancel</Button>
                         <Button onClick={verifyDepositOtp} className="flex-1 bg-yellow-600 hover:bg-yellow-700">Verify</Button>
                     </div>
                 </div>
